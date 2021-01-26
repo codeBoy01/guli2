@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @MapperScan("com.atguigu.eduservice.mapper")
-public class MybatisPlusConfig {
+public class EduConfig {
     /**
      2
      * SQL 执行性能分析插件
