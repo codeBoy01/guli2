@@ -31,6 +31,7 @@ public class EduTeacherController {
      * */
      @ApiOperation(value = "返回所有的讲师列表")
     @GetMapping("allTeachers")
+
     public List<EduTeacher> list(){
 
         return eduTeacherService.list(null);
