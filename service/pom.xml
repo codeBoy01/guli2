@@ -13,11 +13,19 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_edu</module>
+        <module>service_vod</module>
     </modules>
     <dependencies>
+        <!--引用common模块下的swagger依赖-->
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>service_base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--引用common模块下的统一返回数据格式-->
+        <dependency>
+            <groupId>com.atguigu</groupId>
+            <artifactId>common_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--<dependency>-->
