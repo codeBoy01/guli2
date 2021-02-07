@@ -28,7 +28,8 @@ import java.util.List;
  */
 @Api(description = "讲师管理")
 @RestController
-@RequestMapping("/eduservice/edu-teacher")
+@RequestMapping("/eduservice/teacher")
+@CrossOrigin
 public class EduTeacherController {
     @Autowired
     private EduTeacherService eduTeacherService;
@@ -38,11 +39,11 @@ public class EduTeacherController {
      @ApiOperation(value = "返回所有的讲师列表")
     @GetMapping("allTeachers")
     public R findAllTeachers(){
-        try{ int a=10/0;
-        }catch (Exception e){
-            //执行自定义异常
-            throw new GuliException(200001,"执行了自定义异常。。");
-        }
+//        try{ int a=10/0;
+//        }catch (Exception e){
+//            //执行自定义异常
+//            throw new GuliException(200001,"执行了自定义异常。。");
+//        }
 
          List<EduTeacher> list = eduTeacherService.list(null);
          return R.ok().data("items",list);
@@ -51,7 +52,7 @@ public class EduTeacherController {
     * 2.逻辑删除
     * */
     @ApiOperation(value="根据id逻辑删除讲师")
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteTeacher/{id}")
     public R removeById(
             @ApiParam(name = "id",value="讲师id",required = true)
             @PathVariable String id)
@@ -120,8 +121,10 @@ public class EduTeacherController {
            wrapper.ge("gmt_create",begin);
         }
         if(!StringUtils.isEmpty(end)){
-            wrapper.ge("gmt_modified",end);
+            wrapper.le("gmt_modified",end);
         }
+        //排序
+        wrapper.orderByDesc("gmt_create");
         //调用方法实现条件查询
         eduTeacherService.page(pageTeacher,wrapper);
         Long total=pageTeacher.getTotal();//总记录数
