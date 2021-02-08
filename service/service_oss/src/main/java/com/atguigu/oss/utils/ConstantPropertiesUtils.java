@@ -1,10 +1,13 @@
 package com.atguigu.oss.utils;
 
 import org.springframework.beans.factory.InitializingBean;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 //当项目已经启动，spring接口，spring加载之后，执行接口的一个方法
 @Component
+//@PropertySource("classpath:application.properties")
 public class ConstantPropertiesUtils  implements InitializingBean{
     //读取配置文件内容
     @Value("${aliyun.oss.file.endpoint}")
