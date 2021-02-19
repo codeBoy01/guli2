@@ -14,7 +14,7 @@ public class TestEasyExcel
 //        //2.调用easyexcel实现写操作
 //        //write方法两个参数，第一个参数是文件路径名称，第二参数是实体类class
 //        EasyExcel.write(filename,DemoData.class).sheet("学生列表").doWrite(getData());
-//         写操作
+//         读操作
             String filename="D:\\easyexcel\\write.xlsx";
             EasyExcel.read(filename,DemoData.class,new ExcelListener()).sheet().doRead();
     }
