@@ -12,10 +12,10 @@ public class TeacherQueryVO {
     @ApiModelProperty(value="头衔 1高级讲师 2首席教师")
     private Integer level;
 
-    @ApiModelProperty(value = "查询开始时间",example = "2020-01-01 10:10:10")
+    @ApiModelProperty(value = "发布开始时间",example = "2020-01-01 10:10:10")
     private String begin;
 
-    @ApiModelProperty(value = "查询结束时间",example = "2020-01-01 10:10:10")
+    @ApiModelProperty(value = "发布结束时间",example = "2020-01-01 10:10:10")
     private String end;
 
 
