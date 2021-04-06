@@ -1,8 +1,10 @@
 package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.eduservice.entity.BsTask;
+import com.atguigu.eduservice.entity.BsUser;
 import com.atguigu.eduservice.mapper.BsTaskMapper;
 import com.atguigu.eduservice.service.BsTaskService;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +19,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class BsTaskServiceImpl extends ServiceImpl<BsTaskMapper, BsTask> implements BsTaskService {
 
+    @Override
+    public void finishTask(String id) {
+
+        BsTask bsTask = new BsTask();
+        bsTask.setId(id);
+        bsTask.setTaskStatus(true);
+        Integer rows = baseMapper.updateById(bsTask);
+    }
 }

@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BsTaskService extends IService<BsTask> {
 
+    //添加任务完成功能
+    void finishTask(String id);
+
 }

@@ -129,6 +129,17 @@ public class BsTaskController {
             return R.error();
         }
     }
+   /*
+   * 完成任务*/
+    @ApiOperation(value="根据id完成任务")
+    @PostMapping("finishTask/{id}")
+    public R finishById(
+            @ApiParam(name = "id",value="任务id",required = true)
+            @PathVariable String id)
+    {
+         bsTaskService.finishTask(id);
+         return R.ok();
+    }
 
 
 
