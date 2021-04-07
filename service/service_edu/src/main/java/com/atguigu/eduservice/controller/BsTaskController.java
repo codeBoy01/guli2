@@ -141,6 +141,37 @@ public class BsTaskController {
          return R.ok();
     }
 
+    /*
+     * 任务修改*/
+    @ApiOperation(value = "通过id修改任务")
+    @PostMapping("updateTask")
+    public R updateTask(
+            @ApiParam(name = "updateTask",value="修改后的任务对象",required = true)
+            @RequestBody
+            BsTask bsTask
+    ){
+        boolean flag=bsTaskService.updateById(bsTask);
+        if(flag){
+            return R.ok().data("bsTask",bsTask);
+        }
+        else{
+            return R.error();
+        }
+    }
+
+    /*
+     *
+     *根据讲师id进行查询*/
+    @ApiOperation(value = "通过id查询任务")
+    @GetMapping("getTask/{id}")
+    public R getTaskById(
+            @ApiParam(name = "id",value="任务id",required = true)
+            @PathVariable String id
+    ) {
+        BsTask bsTask = bsTaskService.getById(id);
+        return R.ok().data("bsTask",bsTask);
+    }
+
 
 
 }

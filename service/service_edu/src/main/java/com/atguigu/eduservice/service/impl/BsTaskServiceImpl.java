@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * <p>
  * 实验室任务表 服务实现类
@@ -25,6 +27,7 @@ public class BsTaskServiceImpl extends ServiceImpl<BsTaskMapper, BsTask> impleme
         BsTask bsTask = new BsTask();
         bsTask.setId(id);
         bsTask.setTaskStatus(true);
+        bsTask.setGmtFinish(new Date());
         Integer rows = baseMapper.updateById(bsTask);
     }
 }
