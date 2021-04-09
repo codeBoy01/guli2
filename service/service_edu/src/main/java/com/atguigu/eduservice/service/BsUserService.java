@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-03-24
  */
 public interface BsUserService extends IService<BsUser> {
+    String queryNameById(String id);
 
 }

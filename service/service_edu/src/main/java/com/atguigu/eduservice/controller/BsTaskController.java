@@ -7,6 +7,7 @@ import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TaskQueryVO;
 import com.atguigu.eduservice.entity.vo.TeacherQueryVO;
 import com.atguigu.eduservice.service.BsTaskService;
+import com.atguigu.eduservice.service.BsUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -33,6 +34,7 @@ import java.util.List;
 public class BsTaskController {
     @Autowired
     private BsTaskService bsTaskService;
+
 
     @ApiOperation(value = "获取全部任务信息")
     @GetMapping("getAllTask")
@@ -90,7 +92,7 @@ public class BsTaskController {
 
         }
         if(!StringUtils.isEmpty(sendName)){
-            wrapper.like("sned_name",sendName);
+            wrapper.like("send_name",sendName);
 
         }
         if(!StringUtils.isEmpty(taskStatus)){

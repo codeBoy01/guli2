@@ -4,7 +4,10 @@ import com.atguigu.eduservice.entity.BsUser;
 import com.atguigu.eduservice.mapper.BsUserMapper;
 import com.atguigu.eduservice.service.BsUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BsUserServiceImpl extends ServiceImpl<BsUserMapper, BsUser> implements BsUserService {
+@Autowired BsUserMapper bsUserMapper;
 
+    @Override
+    public String queryNameById(String id) {
+        return bsUserMapper.queryNameById(id);
+    }
 }
