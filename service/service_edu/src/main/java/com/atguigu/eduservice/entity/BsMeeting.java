@@ -47,8 +47,14 @@ public class BsMeeting implements Serializable {
     @ApiModelProperty(value = "参会人员id(用,分隔)")
     private String meetingPersonId;
 
+    @ApiModelProperty(value = "参会人员name(用,分隔)")
+    private String meetingPersonName;
+
     @ApiModelProperty(value = "会议开始时间")
     private Date meetingStartTime;
+
+    @ApiModelProperty(value = "会议结束时间")
+    private Date gmtFinish;
 
     @ApiModelProperty(value = "会议时长")
     private Integer meetingMinute;

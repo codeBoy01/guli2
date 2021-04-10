@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,8 @@ import java.util.List;
 public class BsMeetingController {
     @Autowired
     private BsMeetingService bsMeetingService;
+    @Autowired
+    private BsUserService bsUserService;
 
     /*
      * 多条件组合查询任务带分页
@@ -123,6 +126,37 @@ public class BsMeetingController {
             return R.error();
         }
     }
+
+    /*
+     * 通过id获取姓名*/
+    @ApiOperation(value = "根据id查询name")
+    @GetMapping("/queryNamesByIds/{users}")
+    public R queryNameById(@PathVariable String users){
+        String ids[] = users.split(",");
+        List<String> userNamesList = new ArrayList<>();
+        for(int i = 0;i < ids.length;i++){
+            userNamesList.add(bsUserService.queryNameById(ids[i]));
+        }
+        String userNames = userNamesList.get(0);
+        for(int i=1;i<userNamesList.size();i++)
+        {
+            userNames=userNames+","+userNamesList.get(i);
+        }
+        return R.ok().data("userNames",userNames);
+    }
+
+    /*
+     * 完成任务*/
+    @ApiOperation(value="根据id完成会议")
+    @PostMapping("finishMeeting/{id}")
+    public R finishById(
+            @ApiParam(name = "id",value="会议id",required = true)
+            @PathVariable String id)
+    {
+        bsMeetingService.finishTask(id);
+        return R.ok();
+    }
+
 
 
 }

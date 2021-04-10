@@ -45,23 +45,6 @@ public class BsUserController {
 
       return R.ok();
     }
-    /*
-    * 通过id获取姓名*/
-    @ApiOperation(value = "根据id查询name")
-    @GetMapping("/queryNameById")
-    public R queryNameById(String users){
-        String ids[] = users.split(",");
-        List<String> userNamesList = new ArrayList<>();
-       for(int i = 0;i < ids.length;i++){
-           userNamesList.add(bsUserService.queryNameById(ids[i]));
-       }
-       String userNames = userNamesList.get(0);
-       for(int i=1;i<userNamesList.size();i++)
-       {
-           userNames=userNames+","+userNamesList.get(i);
-       }
-         return R.ok().data("userNames",userNames);
-    }
 
 }
 

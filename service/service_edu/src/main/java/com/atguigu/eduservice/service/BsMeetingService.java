@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BsMeetingService extends IService<BsMeeting> {
 
+    void finishTask(String id);
 }
