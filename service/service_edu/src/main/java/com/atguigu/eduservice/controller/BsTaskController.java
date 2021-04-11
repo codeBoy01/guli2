@@ -163,7 +163,7 @@ public class BsTaskController {
 
     /*
      *
-     *根据讲师id进行查询*/
+     *根据任务id进行查询*/
     @ApiOperation(value = "通过id查询任务")
     @GetMapping("getTask/{id}")
     public R getTaskById(

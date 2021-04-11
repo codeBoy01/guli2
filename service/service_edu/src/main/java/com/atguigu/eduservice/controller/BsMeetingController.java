@@ -101,6 +101,7 @@ public class BsMeetingController {
             @ApiParam(name = "BsMeeting",value="会议对象",required = true)
             @RequestBody BsMeeting bsMeeting
     ) {
+
         boolean save=bsMeetingService.save(bsMeeting);
         if(save){
             return R.ok().data("bsMeeting",bsMeeting);
@@ -156,6 +157,38 @@ public class BsMeetingController {
         bsMeetingService.finishTask(id);
         return R.ok();
     }
+
+    /*
+     *
+     *根据会议id进行查询*/
+    @ApiOperation(value = "通过id查询")
+    @GetMapping("getMeeting/{id}")
+    public R getMeetingById(
+            @ApiParam(name = "id",value="会议id",required = true)
+            @PathVariable String id
+    ) {
+        BsMeeting bsMeeting = bsMeetingService.getById(id);
+        return R.ok().data("bsMeeting",bsMeeting);
+    }
+
+    /*
+     * 会议修改*/
+    @ApiOperation(value = "通过id修改会议")
+    @PostMapping("updateMeeting")
+    public R updateMeeting(
+            @ApiParam(name = "updateMeeting",value="修改后的会议对象",required = true)
+            @RequestBody
+                    BsMeeting bsMeeting
+    ){
+        boolean flag=bsMeetingService.updateById(bsMeeting);
+        if(flag){
+            return R.ok().data("bsMeeting",bsMeeting);
+        }
+        else{
+            return R.error();
+        }
+    }
+
 
 
 
