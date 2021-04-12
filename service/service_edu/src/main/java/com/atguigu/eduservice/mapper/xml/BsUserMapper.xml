@@ -5,4 +5,8 @@
         select username from bs_user where id = #{id}
     </select>
 
+    <select id="getStudentList" resultType="com.atguigu.eduservice.entity.BsUser">
+        select * from bs_user WHERE flag = 0
+    </select>
+
 </mapper>

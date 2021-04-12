@@ -18,4 +18,5 @@ import java.util.List;
 public interface BsUserMapper extends BaseMapper<BsUser> {
     public String queryNameById(String id);
 
+    List<BsUser> getStudentList();
 }

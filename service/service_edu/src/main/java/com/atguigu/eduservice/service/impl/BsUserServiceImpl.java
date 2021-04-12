@@ -25,4 +25,9 @@ public class BsUserServiceImpl extends ServiceImpl<BsUserMapper, BsUser> impleme
     public String queryNameById(String id) {
         return bsUserMapper.queryNameById(id);
     }
+
+    @Override
+    public List<BsUser> getStudentList() {
+        return bsUserMapper.getStudentList();
+    }
 }

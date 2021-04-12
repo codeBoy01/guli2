@@ -42,6 +42,9 @@ public class BsUser implements Serializable {
     @ApiModelProperty(value = "姓名")
     private String username;
 
+    @ApiModelProperty(value = "实验室名称")
+    private String labName;
+
     @ApiModelProperty(value = "头像oss地址")
     private String avatar;
 
