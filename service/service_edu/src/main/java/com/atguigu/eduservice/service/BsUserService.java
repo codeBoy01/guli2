@@ -2,6 +2,7 @@ package com.atguigu.eduservice.service;
 
 import com.atguigu.eduservice.entity.BsUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface BsUserService extends IService<BsUser> {
     String queryNameById(String id);
 
     List<BsUser> getStudentList();
+
+    void saveStudent(MultipartFile file, BsUserService bsUserService);
 }

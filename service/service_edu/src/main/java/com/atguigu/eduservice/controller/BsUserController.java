@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,7 +91,15 @@ public class BsUserController {
         List<BsUser> records = pageUser.getRecords();//数据list集合
         return R.ok().data("total",total).data("rows",records);
     }
-
+    //添加学生
+    //获取上传过来的文件，把文件内容读取出来
+    @ApiOperation(value = "读取excel文件")
+    @PostMapping("/addStudent")
+    public R addStudent(MultipartFile file){
+        //上传过来excel文件
+        bsUserService.saveStudent(file,bsUserService);
+        return R.ok();
+    }
 
     //获取学生用户
     @GetMapping("/getStudents")
