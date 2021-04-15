@@ -9,6 +9,7 @@ import com.atguigu.eduservice.entity.vo.MeetingQueryVO;
 import com.atguigu.eduservice.entity.vo.StudentQueryVO;
 import com.atguigu.eduservice.service.BsTaskService;
 import com.atguigu.eduservice.service.BsUserService;
+import com.atguigu.eduservice.util.IpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -19,6 +20,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +33,7 @@ import java.util.List;
  * @author testjava
  * @since 2021-03-24
  */
-@Api(description = "用户登录管理操作")
+@Api(description = "用户管理操作")
 @RestController
 @RequestMapping("/eduservice/bs-user")
 @CrossOrigin
@@ -40,9 +42,18 @@ public class BsUserController {
     private BsUserService bsUserService;
 
     /*
+     * 获取ip
+     */
+    @ApiOperation(value = "获取IP")
+    @RequestMapping(value = "/getIp", method = RequestMethod.POST)
+    @ResponseBody
+    public String getIp(HttpServletRequest request) {
+        return IpUtil.getIpAddr(request);
+    }
+
+    /*
      * 多条件组合查询学生带分页
      */
-
     @ApiOperation(value = "分页条件查询学生")
     @PostMapping("pageStudentCondition/{current}/{limit}")
     public R pageStudentCondition(
@@ -107,6 +118,24 @@ public class BsUserController {
         List<BsUser> studentList = new ArrayList<>();
         studentList = bsUserService.getStudentList();
         return R.ok().data("studentList",studentList);
+    }
+
+    /*
+     * 逻辑删除
+     * */
+    @ApiOperation(value="根据id逻辑删除学生")
+    @DeleteMapping("deleteStudent/{id}")
+    public R removeById(
+            @ApiParam(name = "id",value="学生id",required = true)
+            @PathVariable String id)
+    {
+        boolean flag = bsUserService.removeById(id);
+        if(flag){
+            return R.ok();
+        }
+        else {
+            return R.error();
+        }
     }
 
     //获取全部用户

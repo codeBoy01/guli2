@@ -27,8 +27,17 @@ public class StudentExcelListener extends AnalysisEventListener<StudentData> {
         String account = studentData.getAccount();
         String userclass = studentData.getUserclass();
         BsUser bsUser = new BsUser();
-        bsUser.setLabName(labName).setUsername(username).setAccount(account).setUserclass(userclass).setPassword("000000").setAvatar("https://guli-file-190513.oss-cn-beijing.aliyuncs.com/avatar/default.jpg");
-        bsUserService.save(bsUser);
+        bsUser.setLabName(labName)
+                .setUsername(username)
+                .setAccount(account)
+                .setUserclass(userclass)
+                .setPassword("000000")
+                .setAvatar("https://guli-file-190513.oss-cn-beijing.aliyuncs.com/avatar/default.jpg");
+        try{
+            bsUserService.save(bsUser);
+        } catch (Exception e){
+            throw new GuliException(20001,"账号名存在重复，请重新输入");
+        }
     }
 
     @Override
