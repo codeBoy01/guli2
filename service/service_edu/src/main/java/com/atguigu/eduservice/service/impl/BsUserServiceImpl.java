@@ -50,4 +50,19 @@ public class BsUserServiceImpl extends ServiceImpl<BsUserMapper, BsUser> impleme
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String queryPasswordByUsername(String username) {
+     return bsUserMapper.queryPasswordByUsername(username);
+    }
+
+    @Override
+    public BsUser queryUserByAccount(String token) {
+        return bsUserMapper.queryUserByAccount(token);
+    }
+
+    @Override
+    public String queryIdByName(String username) {
+        return bsUserMapper.queryIdByName(username);
+    }
 }

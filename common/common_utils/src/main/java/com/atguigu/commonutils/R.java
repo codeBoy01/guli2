@@ -3,7 +3,6 @@ package com.atguigu.commonutils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -51,6 +51,13 @@ public class BsUserController {
         return IpUtil.getIpAddr(request);
     }
 
+    //获取管理员id
+    @GetMapping("/getId/{username}")
+    public R getIdByUsername(@PathVariable String username){
+        String userId = bsUserService.queryIdByName(username);
+        return R.ok().data("userId",userId);
+    }
+
     /*
      * 多条件组合查询学生带分页
      */

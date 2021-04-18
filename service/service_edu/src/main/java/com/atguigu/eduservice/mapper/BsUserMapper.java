@@ -19,4 +19,10 @@ public interface BsUserMapper extends BaseMapper<BsUser> {
     public String queryNameById(String id);
 
     List<BsUser> getStudentList();
+
+    String queryPasswordByUsername(String username);
+
+    BsUser queryUserByAccount(String token);
+
+    String queryIdByName(String username);
 }

@@ -20,4 +20,10 @@ public interface BsUserService extends IService<BsUser> {
     List<BsUser> getStudentList();
 
     void saveStudent(MultipartFile file, BsUserService bsUserService);
+
+    String queryPasswordByUsername(String username);
+
+    BsUser queryUserByAccount(String token);
+
+    String queryIdByName(String username);
 }

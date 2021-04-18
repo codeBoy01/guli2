@@ -9,4 +9,15 @@
         select * from bs_user WHERE flag = 0
     </select>
 
+    <select id="queryPasswordByUsername" resultType="java.lang.String">
+        SELECT password from bs_user WHERE account = #{username}
+    </select>
+
+    <select id="queryUserByAccount" resultType="com.atguigu.eduservice.entity.BsUser">
+        SELECT * FROM bs_user WHERE account = #{account}
+    </select>
+
+    <select id="queryIdByName" resultType="java.lang.String">
+        SELECT id from bs_user WHERE account = #{username}
+    </select>
 </mapper>
