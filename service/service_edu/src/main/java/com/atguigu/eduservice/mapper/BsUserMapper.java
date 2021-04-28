@@ -25,4 +25,8 @@ public interface BsUserMapper extends BaseMapper<BsUser> {
     BsUser queryUserByAccount(String token);
 
     String queryIdByName(String username);
+
+    BsUser queryById(String id);
+
+    BsUser queruUserByUsername(String username);
 }

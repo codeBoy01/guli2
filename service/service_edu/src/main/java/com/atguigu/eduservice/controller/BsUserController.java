@@ -5,6 +5,7 @@ import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.BsMeeting;
 import com.atguigu.eduservice.entity.BsUser;
 import com.atguigu.eduservice.entity.EduChapter;
+import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.MeetingQueryVO;
 import com.atguigu.eduservice.entity.vo.StudentQueryVO;
 import com.atguigu.eduservice.service.BsTaskService;
@@ -57,7 +58,29 @@ public class BsUserController {
         String userId = bsUserService.queryIdByName(username);
         return R.ok().data("userId",userId);
     }
-
+   //获取管理员信息
+    @GetMapping("/getInfo/{username}")
+    public R getInfoByUsername(@PathVariable String username){
+        BsUser bsUser = bsUserService.queryUser(username);
+        return R.ok().data("manager",bsUser);
+    }
+    //修改管理员信息
+    /*
+     * 讲师修改*/
+    @ApiOperation(value = "通过id修改管理员信息")
+    @PostMapping("updateManagerInfo")
+    public R updateTeacher(
+            @ApiParam(name = "updateManager",value="修改后的管理员对象",required = true)
+            @RequestBody BsUser bsUser
+    ){
+        boolean flag=bsUserService.updateById(bsUser);
+        if(flag){
+            return R.ok().data("bsUser",bsUser);
+        }
+        else{
+            return R.error();
+        }
+    }
     /*
      * 多条件组合查询学生带分页
      */

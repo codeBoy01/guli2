@@ -44,7 +44,7 @@ public class EduLoginController {
     }
 
     //退出登录，前端将值清空，后端只需返回信息即可。
-    @ApiOperation(value = "获取管理员信息")
+    @ApiOperation(value = "退出登录")
     @PostMapping("logout")
     public R logout() {
         return R.ok();

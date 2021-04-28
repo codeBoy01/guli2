@@ -26,4 +26,8 @@ public interface BsUserService extends IService<BsUser> {
     BsUser queryUserByAccount(String token);
 
     String queryIdByName(String username);
+
+    BsUser queryById(String id);
+
+    BsUser queryUser(String username);
 }
