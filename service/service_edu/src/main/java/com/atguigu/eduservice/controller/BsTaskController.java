@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,22 +83,25 @@ public class BsTaskController {
         //多条件组合查询:类似于mybatis动态sql
 
         String taskName=  taskQueryVO.getTaskName();
-        String sendName = taskQueryVO.getSendName();
         Boolean taskStatus = taskQueryVO.getTaskStatus();
         String begin=taskQueryVO.getBegin();
         String end=taskQueryVO.getEnd();
+        String sendId = taskQueryVO.getSendid();
+        String receId = taskQueryVO.getReceid();
+        System.out.println(taskQueryVO.toString());
         //判断条件值是否为空，如果不为空拼接条件
         if(!StringUtils.isEmpty(taskName)){
             wrapper.like("task_name",taskName);
-
         }
-        if(!StringUtils.isEmpty(sendName)){
-            wrapper.like("send_name",sendName);
-
+        if(!StringUtils.isEmpty(sendId)){
+            System.out.println(11);
+            wrapper.eq("sendid",sendId);
+        }
+        if(!StringUtils.isEmpty(receId)){
+            wrapper.eq("reid",receId);
         }
         if(!StringUtils.isEmpty(taskStatus)){
             wrapper.eq("task_status",taskStatus);
-
         }
         if(!StringUtils.isEmpty(begin)){
             wrapper.ge("gmt_create",begin);

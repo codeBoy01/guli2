@@ -15,6 +15,7 @@
         <module>service_edu</module>
         <module>service_vod</module>
         <module>service_oss</module>
+        <module>service_ucenter</module>
     </modules>
     <dependencies>
         <!--引用common模块下的swagger依赖-->

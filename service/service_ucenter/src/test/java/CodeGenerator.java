@@ -1,5 +1,3 @@
-package com.atguigu.demo;
-
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -50,7 +48,7 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
 
         pc.setParent("com.atguigu");
-        pc.setModuleName("eduservice"); //模块名
+        pc.setModuleName("eduucenter"); //模块名
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");
@@ -59,7 +57,7 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("bs_message");
+        strategy.setInclude("bs_user");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

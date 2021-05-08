@@ -9,16 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_edu</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-    </dependencies>
+    <artifactId>service_ucenter</artifactId>
 
-<build>
+    <build>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
