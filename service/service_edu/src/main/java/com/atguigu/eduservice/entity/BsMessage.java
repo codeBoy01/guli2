@@ -1,9 +1,12 @@
 package com.atguigu.eduservice.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,7 +24,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BsMessage对象", description="毕设用户表")
+@ApiModel(value="BsMessage对象", description="毕设消息公告表")
 public class BsMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +36,9 @@ public class BsMessage implements Serializable {
     @ApiModelProperty(value = "接收人ID")
     private String userid;
 
+    @ApiModelProperty(value = "标题")
+    private String title;
+
     @ApiModelProperty(value = "内容")
     private String content;
 
@@ -40,11 +46,14 @@ public class BsMessage implements Serializable {
     private Integer sort;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @TableLogic
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
     private Boolean isDeleted;
 

@@ -20,6 +20,12 @@ public class MeetingQueryVO {
     @ApiModelProperty(value = "查询完成时间",example = "2020-01-01 10:10:10")
     private String end;
 
+    //接收人id
+    private String reid;
+
+    //发送人id
+    private String sendid;
+
 
 
 }

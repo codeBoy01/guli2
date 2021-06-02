@@ -4,14 +4,21 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.BsDailyAnnounce;
 import com.atguigu.eduservice.entity.BsMeeting;
+import com.atguigu.eduservice.entity.BsMessage;
+import com.atguigu.eduservice.entity.vo.PieData;
 import com.atguigu.eduservice.service.BsDailyAnnounceService;
+import com.atguigu.eduservice.util.IpUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.*;
 
 /**
  * <p>
@@ -29,28 +36,53 @@ public class BsDailyAnnounceController {
     @Autowired
     private BsDailyAnnounceService bsDailyAnnounceService;
 
-    /*通过userid来获取个人签到信息*/
     @GetMapping("getAnnounceInfo/{userid}")
-    public R getInfo(@PathVariable String userid ){
+    public R getInfo(@PathVariable String userid) {
         List<BsDailyAnnounce> announceList = bsDailyAnnounceService.getListByUserid(userid);
-        System.out.println(announceList.get(0).toString());
-        return R.ok().data("announceList",announceList);
+        return R.ok().data("announceList", announceList);
     }
-    /*
-     *
-     * 添加会议接口*/
-    @ApiOperation(value = "签到")
-    @GetMapping("addAnnounce/{userid}")
-    public R addAnnounce(@PathVariable String userid ) {
-        List<BsDailyAnnounce> announceList = bsDailyAnnounceService.getListByUserid(userid);
-        for(int i=0;i<announceList.size();i++){
-            announceList.get(i).getAnnounceDate().getYear();
-        }
-     //如果查出有签到记录，则更新
-        Date date = new Date();
 
-  // 无签到记录则增加
-return R.ok();
+    @PostMapping("sign")
+    public R addSign(
+            @ApiParam(name = "BsMessage", value = "查询条件并封装成对象", required = true)
+            @RequestBody BsDailyAnnounce bsDailyAnnounce,
+            HttpServletRequest request
+    ) {
+        String ip = IpUtil.getIpAddr(request);
+        System.out.println(ip);
+        if (ip.equals("0:0:0:0:0:0:0:1") || ip.equals("66.183.206.81")) {
+            try {
+                boolean save = bsDailyAnnounceService.save(bsDailyAnnounce);
+                return R.ok().data("bsDailyAnnounce", bsDailyAnnounce);
+            } catch (Exception e) {
+                return R.error().message("签到失败，已经签到或请假");
+            }
+        } else {
+            return R.error().message("签到失败，ip地址不对，请连接实验室wifi");
+        }
+    }
+
+    @PostMapping("vacate")
+    public R addVacate(
+            @ApiParam(name = "BsMessage", value = "查询条件并封装成对象", required = true)
+            @RequestBody BsDailyAnnounce bsDailyAnnounce,
+            HttpServletRequest request
+    ) {
+        try {
+            boolean save = bsDailyAnnounceService.save(bsDailyAnnounce);
+            return R.ok().data("bsDailyAnnounce", bsDailyAnnounce);
+        } catch (Exception e) {
+            return R.error().message("请假失败，已经签到或请假");
+        }
+    }
+
+    @GetMapping("pieData/{userid}")
+    public R getPieData(@PathVariable String userid){
+
+        List<PieData> list = bsDailyAnnounceService.getPieData(userid);
+        return R.ok().data("pieData",list);
+
+
     }
 
 }

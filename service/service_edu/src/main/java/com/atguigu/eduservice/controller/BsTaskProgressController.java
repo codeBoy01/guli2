@@ -2,6 +2,7 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.commonutils.R;
+import com.atguigu.eduservice.entity.BsTask;
 import com.atguigu.eduservice.entity.BsTaskProgress;
 import com.atguigu.eduservice.service.BsTaskProgressService;
 import io.swagger.annotations.Api;
@@ -35,9 +36,23 @@ public class BsTaskProgressController {
             @ApiParam(name = "id",value="任务id",required = true)
             @PathVariable String id)
     {
-
         List<BsTaskProgress> bsTaskProgresses = bsTaskProgressService.queryProgress(id);
         return R.ok().data("bsTaskProgress",bsTaskProgresses);
+    }
+    /*
+     *
+     * 添加任务接口*/
+    @ApiOperation(value = "添加任务进展")
+    @PostMapping("addTaskProgress")
+    public R addTeacher(
+            @RequestBody BsTaskProgress bsTaskProgress
+    ) {
+        boolean save=bsTaskProgressService.save(bsTaskProgress);
+        if(save){
+            return R.ok().data("bsTaskProgress",bsTaskProgress);
+        }else {
+            return R.error();
+        }
     }
 
 }

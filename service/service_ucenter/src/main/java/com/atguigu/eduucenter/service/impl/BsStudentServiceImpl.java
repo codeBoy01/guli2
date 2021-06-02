@@ -36,6 +36,7 @@ public class BsStudentServiceImpl extends ServiceImpl<BsStudentMapper, BsUser> i
         QueryWrapper<BsUser> wrapper = new QueryWrapper<>();
         wrapper.eq("account",account);
         BsUser bsUser2 = baseMapper.selectOne(wrapper);
+        System.out.println(bsUser2);
         //判断查询对象是否为空
         if(bsUser2 == null){
             //没有这个用户名

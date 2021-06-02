@@ -5,4 +5,12 @@
     <select id="getListByUserid" parameterType="java.lang.String" resultType="com.atguigu.eduservice.entity.BsDailyAnnounce">
         select * from bs_daily_announce WHERE userid = #{userid}
     </select>
+
+    <select id="getCount1" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT count(*) from bs_daily_announce WHERE  `userid` = #{param1} and  `day` like #{param2} and is_vacate = 0
+    </select>
+
+    <select id="getCount2" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT count(*) from bs_daily_announce WHERE  `userid` = #{param1} and  `day` like #{param2} and is_vacate = 1
+    </select>
 </mapper>

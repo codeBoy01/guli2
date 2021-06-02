@@ -6,6 +6,8 @@ import com.atguigu.commonutils.R;
 import com.atguigu.eduucenter.entity.BsUser;
 import com.atguigu.eduucenter.service.BsStudentService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +41,23 @@ public class BsStudentController {
         String studentId = JwtUtils.getMemberIdByJwtToken(request);
         //根据用户id查询信息
         BsUser bsUser = bsUserService.getById(studentId);
+        System.out.println(bsUser);
         return R.ok().data("studentInfo",bsUser);
+    }
+    //修改管理员信息
+    @ApiOperation(value = "通过id修改学生本人信息")
+    @PostMapping("updateUserInfo")
+    public R updateTeacher(
+            @ApiParam(name = "updateManager",value="修改后的管理员对象",required = true)
+            @RequestBody BsUser bsUser
+    ){
+        boolean flag=bsUserService.updateById(bsUser);
+        if(flag){
+            return R.ok().data("bsUser",bsUser);
+        }
+        else{
+            return R.error();
+        }
     }
 
 }

@@ -1,11 +1,12 @@
 package com.atguigu.eduservice.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import java.util.List;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,13 +19,13 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author testjava
- * @since 2021-05-07
+ * @since 2021-05-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BsDailyAnnounce对象", description="日常签到表")
-public class BsDailyAnnounce implements Serializable {
+@ApiModel(value="BsMeetingSign对象", description="日常签到表")
+public class BsMeetingSign implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,8 +36,19 @@ public class BsDailyAnnounce implements Serializable {
     @ApiModelProperty(value = "签到者id")
     private String userid;
 
-    private String day;
+    @ApiModelProperty(value = "会议id")
+    private String meetingid;
 
-    private Boolean isVacate;
+
+    @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "签到时间")
+    private Date announceDate;
+
+    @ApiModelProperty(value = "是否请假")
+    private Integer isVacate;
+
+    @ApiModelProperty(value = "请假原因")
+    private String vacateReason;
+
 
 }

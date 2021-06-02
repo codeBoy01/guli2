@@ -88,6 +88,10 @@ public class BsTaskController {
         String end=taskQueryVO.getEnd();
         String sendId = taskQueryVO.getSendid();
         String receId = taskQueryVO.getReceid();
+        if(StringUtils.isEmpty(sendId)&&StringUtils.isEmpty(receId)){
+            return R.ok();
+
+        }
         System.out.println(taskQueryVO.toString());
         //判断条件值是否为空，如果不为空拼接条件
         if(!StringUtils.isEmpty(taskName)){
@@ -175,6 +179,7 @@ public class BsTaskController {
             @PathVariable String id
     ) {
         BsTask bsTask = bsTaskService.getById(id);
+        System.out.println(bsTask.toString());
         return R.ok().data("bsTask",bsTask);
     }
 

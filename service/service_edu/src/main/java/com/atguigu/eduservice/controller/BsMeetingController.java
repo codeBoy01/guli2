@@ -38,11 +38,6 @@ public class BsMeetingController {
     private BsMeetingService bsMeetingService;
     @Autowired
     private BsUserService bsUserService;
-
-    /*
-     * 多条件组合查询任务带分页
-     */
-
     @ApiOperation(value = "分页条件查询会议")
     @PostMapping("pageMeetingCondition/{current}/{limit}")
     public R pageTaskCondition(
@@ -53,24 +48,37 @@ public class BsMeetingController {
             @ApiParam(name = "TaskQuery",value="查询条件并封装成对象",required = false)
             @RequestBody(required = false) MeetingQueryVO meetingQueryVO
     ){
-        //创建page对象
         Page<BsMeeting> pageMeeting = new Page<>(current,limit);
-        //构建条件
         QueryWrapper<BsMeeting> wrapper = new QueryWrapper<>();
-        //多条件组合查询:类似于mybatis动态sql
-
         String meetingName=  meetingQueryVO.getMeetingName();
         String meetingLeaderName = meetingQueryVO.getMeetingLeaderName();
         Boolean status = meetingQueryVO.getStatus();
         String begin = meetingQueryVO.getBegin();
         String end = meetingQueryVO.getEnd();
-        //判断条件值是否为空，如果不为空拼接条件
+        String sendid = meetingQueryVO.getSendid();
+        String reid = meetingQueryVO.getReid();
+        if(StringUtils.isEmpty(sendid)&&StringUtils.isEmpty(reid)){
+            return R.ok();
+
+        }
         if(!StringUtils.isEmpty(meetingName)){
             wrapper.like("meeting_name",meetingName);
 
         }
         if(!StringUtils.isEmpty(meetingLeaderName)){
             wrapper.like("meeting_leader_name",meetingLeaderName);
+
+        }
+        if(!StringUtils.isEmpty(reid)){
+            wrapper.like("meeting_person_id",reid);
+
+        }
+        if(!StringUtils.isEmpty(status)){
+            wrapper.eq("status",status);
+
+        }
+        if(!StringUtils.isEmpty(sendid)){
+            wrapper.eq("meeting_leader_id",sendid);
 
         }
         if(!StringUtils.isEmpty(status)){
@@ -187,6 +195,15 @@ public class BsMeetingController {
         else{
             return R.error();
         }
+    }
+
+    @GetMapping("getMeetingList")
+    public R getMeetingList()
+    {
+        List<BsMeeting> bsMeetingList = new ArrayList<>();
+        bsMeetingList = bsMeetingService.list(null);
+        return R.ok().data("bsMeetingList",bsMeetingList);
+
     }
 
 

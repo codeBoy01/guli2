@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.eduservice.mapper.BsMeetingSignMapper">
+
+    <select id="getNum" parameterType="java.lang.String" resultType="java.lang.String">
+        select meeting_person_id from bs_meeting where id = #{meetingid}
+    </select>
+    <select id="getNum2" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from bs_meeting_sign where meetingid = #{meetingid} and  is_vacate = 0
+    </select>
+    <select id="getNum3" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from bs_meeting_sign where meetingid = #{meetingid} and  is_vacate = 1
+    </select>
+</mapper>

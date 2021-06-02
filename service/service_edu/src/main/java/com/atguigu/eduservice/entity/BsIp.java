@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import java.util.List;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,17 +12,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 日常签到表
+ * 毕设签到ip表
  * </p>
  *
  * @author testjava
- * @since 2021-05-07
+ * @since 2021-05-10
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="BsDailyAnnounce对象", description="日常签到表")
-public class BsDailyAnnounce implements Serializable {
+@ApiModel(value="BsIp对象", description="毕设签到ip表")
+public class BsIp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,11 +30,14 @@ public class BsDailyAnnounce implements Serializable {
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
-    @ApiModelProperty(value = "签到者id")
-    private String userid;
+    @ApiModelProperty(value = "签到ip")
+    private String ip;
 
-    private String day;
+    @ApiModelProperty(value = "创建时间")
+    private Date gmtCreate;
 
-    private Boolean isVacate;
+    @ApiModelProperty(value = "更新时间")
+    private Date gmtModified;
+
 
 }

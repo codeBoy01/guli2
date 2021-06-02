@@ -1,7 +1,10 @@
 package com.atguigu.eduservice.service;
 
+import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.BsMessage;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BsMessageService extends IService<BsMessage> {
 
+    List<BsMessage> getList(String userid);
+
+    List<BsMessage> getByFlag();
+
+    List<BsMessage> getAnnouncement();
 }

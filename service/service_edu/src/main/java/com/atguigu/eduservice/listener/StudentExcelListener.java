@@ -11,12 +11,9 @@ public class StudentExcelListener extends AnalysisEventListener<StudentData> {
     public BsUserService bsUserService;
     public StudentExcelListener() {
     }
-
     public StudentExcelListener(BsUserService bsUserService) {
-
         this.bsUserService = bsUserService;
     }
-
     @Override
     public void invoke(StudentData studentData, AnalysisContext analysisContext) {
         if(studentData == null){

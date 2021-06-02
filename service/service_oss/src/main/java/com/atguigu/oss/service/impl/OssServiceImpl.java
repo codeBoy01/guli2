@@ -55,6 +55,5 @@ public class OssServiceImpl implements OssService {
             e.printStackTrace();
             return null;
         }
-
     }
 }

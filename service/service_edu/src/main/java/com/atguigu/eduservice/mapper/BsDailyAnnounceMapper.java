@@ -16,4 +16,8 @@ import java.util.List;
 public interface BsDailyAnnounceMapper extends BaseMapper<BsDailyAnnounce> {
 
     List<BsDailyAnnounce> getListByUserid(String userid);
+
+    Integer getCount1(String userid,String month);
+    Integer getCount2(String userid,String month);
+
 }

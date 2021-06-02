@@ -64,6 +64,8 @@ public class BsUserController {
         BsUser bsUser = bsUserService.queryUser(username);
         return R.ok().data("manager",bsUser);
     }
+
+
     //修改管理员信息
     /*
      * 讲师修改*/
